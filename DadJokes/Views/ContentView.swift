@@ -53,8 +53,8 @@ struct ContentView: View {
                 
                 Spacer()
             }
-            
-            List(favorets) { currentJoke in
+            //id\.self tell list tructer to identifi each joke by the contens of its words
+            List(favorets, id: \.self) { currentJoke in
                 Text(currentJoke.joke)
             }
             
