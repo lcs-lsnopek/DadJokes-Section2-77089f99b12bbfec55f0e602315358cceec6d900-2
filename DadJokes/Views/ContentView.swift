@@ -14,9 +14,12 @@ struct ContentView: View {
                                        joke: "Knock, knock...",
                                        status: 0)
     
+    @State var favorets: [DadJoke] = {} //Empty list
+    
     // MARK: Computed properties
     var body: some View {
         VStack {
+            
             
             Text(currentJoke.joke)
                 .font(.title)
@@ -30,6 +33,8 @@ struct ContentView: View {
             
             Image(systemName: "heart.circle")
                 .font(.largeTitle)
+            //Add new joke to the list
+            favorets.append(currentJoke)
         
             Button(action: {
                 print("I've been pressed.")
@@ -49,10 +54,8 @@ struct ContentView: View {
                 Spacer()
             }
             
-            List {
-                Text("Which side of the chicken has more feathers? The outside.")
-                Text("Why did the Clydesdale give the pony a glass of water? Because he was a little horse!")
-                Text("The great thing about stationery shops is they're always in the same place...")
+            List(favorets) { currentJoke in
+                Text(currentJoke.joke)
             }
             
             Spacer()
